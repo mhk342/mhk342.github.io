@@ -44,14 +44,51 @@ Source: city-data</p>
 
 <p>While this data may seem to correlate with general knowledge it presents only half the picture, to gain a true understanding, we will need to further dissect the data.</p>
 
+<h3>
+<a id="base-case-adjusted-by-days-injuries" class="anchor" href="#base-case-adjusted-by-days-injuries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Base Case Adjusted by Days (Injuries)</h3>
+
+<p>To scrutinize previous results, we used a combination of Weekday() and the Vlookup() to convert the dates on the list to days. Sorting data on pivot tables by days allowed us to glean some interesting information. In the graphs below we can see that the injuries from motor vehicle collisions have been sorted by day with time on the horizontal axis and number of people on the vertical axis. This showed us that injuries by collisions are somewhat similar. While Monday shows a spike on morning and evening rush hour, Sunday shows a slight uptick at 4AM with a peak at 4PM. This data correlates with previous analyses and proves that while day might play a factor in determining injuries, time is the most important variable. </p>
+
 <p><img src="http://i.imgur.com/ANbVcfK.png" alt="Injuries on Weekdays">
-<img src="http://i.imgur.com/VsnJrNl.png" alt="Injuries on Weekend">
-<img src="http://i.imgur.com/N22AYXS.png" alt="Deaths on Weekday">
-<img src="http://i.imgur.com/Bdjo6uv.png" alt="Deaths of Weekend">
-<img src="http://i.imgur.com/u07Vd5g.png" alt="Death vs Bar Closing Times">
-<img src="http://i.imgur.com/oonM9lx.png" alt="Brooklyn Is the Culprit">
-<img src="http://i.imgur.com/K46Ng2Z.png" alt="Analyzing Brooklyn">
-<img src="http://i.imgur.com/qB6kQL3.png" alt="The Solution?"></p>
+<img src="http://i.imgur.com/VsnJrNl.png" alt="Injuries on Weekend"></p>
+
+<h3>
+<a id="base-case-adjusted-by-days-deaths" class="anchor" href="#base-case-adjusted-by-days-deaths" aria-hidden="true"><span class="octicon octicon-link"></span></a>Base Case Adjusted by Days (Deaths)</h3>
+
+<p>Using the same method as above, we now turn to deaths caused by motor vehicle collisions. Looking at both graphs, we can see that Monday, a weekday, has spikes at 12PM and 4PM, with peaks at 6PM and 7PM. Interestingly, just as injuries start to go down on a Monday (around 6PM) the number of deaths start to rise. However, the most interesting data can be gleaned from deaths on weekend. The number of deaths, peak at 2AM on a Saturday and gradually go down only for a typical 4PM rush hour spike. Only after sorting the data, first by hour and then by day, do we realize the importance of not using raw numbers to jump to conclusions. It is now clear that most deaths on a weekend happen at night.</p>
+
+<p><img src="http://i.imgur.com/N22AYXS.png" alt="Deaths on Weekday">
+<img src="http://i.imgur.com/Bdjo6uv.png" alt="Deaths of Weekend"></p>
+
+<h3>
+<a id="is-alcohol-the-answer" class="anchor" href="#is-alcohol-the-answer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Is Alcohol the Answer?</h3>
+
+<p>After observing late night peaks in death by collision on the weekend, we decided to use the Gothamist dataset to see if there is a correlation and causation effect between late-night bars and deaths from accidents. Sorting both datasets by zip-code and creating a pivot table with the combined datasets, allowed us to create a linear regression in a scatter plot. The results were surprising! An R^2 of .003 conclusively proved that bars and driving deaths are not correlated, at least by zip-code. </p>
+
+<p><img src="http://i.imgur.com/u07Vd5g.png" alt="Death vs Bar Closing Times"></p>
+
+<h3>
+<a id="brooklyn-is-the-culprit" class="anchor" href="#brooklyn-is-the-culprit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Brooklyn Is the Culprit!</h3>
+
+<p>After the alcohol test was inconclusive, we used the NYC Population Projection by Age/Sex and Borough dataset; and, turned to geography and demographics for helping us understand motor vehicle collisions better. Interestingly, with 2.6 Million people Brooklyn, NYC’s most populous borough, accounted for nearly 30,000 accidents that resulted in death or injury. This number was significantly larger than the 20,000 accidents that have occurred in Queens (2.3 Million residents). Clearly Brooklyn is an outlier in the chart below, with the most number of fatal accidents.</p>
+
+<p><img src="http://i.imgur.com/oonM9lx.png" alt="Brooklyn Is the Culprit"></p>
+
+<h3>
+<a id="analyzing-brooklyn" class="anchor" href="#analyzing-brooklyn" aria-hidden="true"><span class="octicon octicon-link"></span></a>Analyzing Brooklyn</h3>
+
+<p>Now we know the following: Deaths from motor vehicle collisions peak at 2AM on a weekend. Brooklyn has the worst road safety with the highest number of fatal accidents. The location of bars have no correlation with any of this. Brooklyn was now broken down and analyzed on some rather specific verticals. Using a combination of pivot tables and Max(), we learnt that the most pedestrian accidents sorted by zip-code and time occur in zip 11207 at 6PM. In a similar fashion, it was discovered that the most cyclist accidents take place in zip 11206 at 6PM and the most motorist collisions happen in zip 11207 at 6PM. Furthermore, zip 11207 has the highest injuries and zip 11236 has the most deaths. Brooklyn leads in all the stats. Zip 11207, which seems to lead NYC in many verticals, is essentially Brownsville; dubbed the murder capital of New York City, Brownsville reputation seems to precede it.</p>
+
+<p><img src="http://i.imgur.com/K46Ng2Z.png" alt="Analyzing Brooklyn"></p>
+
+<p>So what makes Brooklyn the most accident prone borough in New York City? Looking back at demographics, Brooklyn has the highest elderly population and the largest population of people under 18. Insurance typically charges high premiums to both these groups because they have repeatedly proved to be the worst drivers. In this case, it wouldn’t be a stretch to assume that these people could be partially responsible for the increased collisions in Brooklyn.</p>
+
+<h3>
+<a id="the-solution-big-black-picture" class="anchor" href="#the-solution-big-black-picture" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Solution (Big Black Picture)</h3>
+
+<p>Reverting back to the initial concern, we still haven’t been able to analyze the reason for late night deaths from collisions on a weekend. While we proved that the location of bars aren’t important and Brooklyn is accident-prone at 6PM, a conclusion has been evasive. However, a solution need not be! Speeding Cameras are the future, the following is a map from a local TV station that has pinpointed the exact location of these cameras in the city. Looking at the data we arrive at the answer. Deaths are occurring because of speed. 1 out of 10 people survive a crash at 40 MPH while 9 out of 10 people can survive one at 20 MPH. People drive too fast and night. Furthermore, In 2014 471,625 speeding tickets were issued by speed cameras compared to 117,767 speeding tickets issued by officers. Lastly, vehicle crashes near cameras declined by 3.9% and crashes with injuries near cameras declined by 13.4%. It is important to note that cameras, placed throughout the city can regulate traffic and speed, resulting in lower collisions across.</p>
+
+<p><img src="http://i.imgur.com/qB6kQL3.png" alt="The Solution?"></p>
 
       <footer class="site-footer">
 
